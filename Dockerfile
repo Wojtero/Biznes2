@@ -7,17 +7,14 @@ RUN cd /
 # RUN git clone --single-branch https://github.com/Wojtero/BiznesKursy
 
 ARG DATABASE_HOST=mariadb
-# ARG DATABASE_HOST=mysql
-# ARG DATABASE_PORT=3306
 ARG DATABASE_PORT=''
 ARG DATABASE_NAME=prestashop
 ARG DATABASE_USER=root
-ARG DATABASE_PASSWORD=admin
+ARG DATABASE_PASSWORD=siema
 ARG DATABASE_PREFIX=ps_
 
 RUN rm -R /var/www/html/*
 COPY presta_src /var/www/html
-# RUN cp -RT BiznesKursy /var/www/html
 
 RUN chmod -R 755 /var/www/html
 RUN chown -R www-data:www-data /var/www/html
@@ -37,13 +34,9 @@ COPY ssl/default-ssl.conf /etc/apache2/sites-enabled/default-ssl.conf
 COPY ssl/zad.crt /etc/apache2/certs/zad.crt
 COPY ssl/zad.key /etc/apache2/certs/zad.key
 COPY ssl/rootCA.crt /etc/apache2/certs/rootCA.crt
-COPY /ssl/ssl.sh .
 
 EXPOSE 80
 EXPOSE 443
 
 RUN a2enmod ssl
 RUN service apache2 restart
-
-# CMD ["bash", "ssl.sh"]
-# RUN /ssl/ssl.sh
