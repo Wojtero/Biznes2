@@ -38,5 +38,7 @@ COPY ssl/rootCA.crt /etc/apache2/certs/rootCA.crt
 EXPOSE 80
 EXPOSE 443
 
+RUN rm -rf install
+
 RUN a2enmod ssl
 RUN service apache2 restart
