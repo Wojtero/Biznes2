@@ -88,4 +88,16 @@
   {$HOOK_HEADER nofilter}
 {/block}
 
+{literal}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TVZ5SDNBW0%22%3E</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TVZ5SDNBW0');
+</script>
+{/literal}
+
 {block name='hook_extra'}{/block}
