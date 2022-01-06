@@ -1,26 +1,28 @@
 version: '2'
 
 services:
-    prestashop:
-        build: .\
+    Skoczkowie:
+        image: michalmaciszka/be_175718
         ports:
-          - 8080:80
-          - 443:443
-        depends_on:
-          - mariadb
+            - 5718:80
+            - 5717:443
         environment:
-            - PS_DEV_MODE=1
-            - DB_SERVER=mariadb
-            - DB_USER=root
-            - DB_PASSWD=admin
-            - DB_NAME=prestashop
-            - PS_FOLDER_ADMIN=siema
             - PS_INSTALL_AUTO=0
-    mariadb:
-        # image: mariadb
-        build: .\db\
-        # volumes:
-        #   - ./docker/mariadb:/docker-entrypoint-initdb.d
-        environment:
-          - MYSQL_ROOT_PASSWORD=admin
-          - MYSQL_DATABASE=prestashop
+            - PS_DEV_MODE=1
+            - DB_SERVER=actina15.maas
+            - DB_USER=be_175718
+            - DB_PASSWD=pass
+            - DB_NAME=be_175718
+            - PS_FOLDER_ADMIN=admin
+            - PS_FOLDER_INSTALL=install
+            - PS_ERASE_DB=0
+            - PS_DOMAIN=localhost:5718
+            - PS_DOMAIN_SSL=localhost:5717
+        # networks:
+        #     - admin-mysql_default
+        restart: always
+# networks:
+#     admin-mysql_default:
+#         external:
+#             name: admin-mysql_default
+        
