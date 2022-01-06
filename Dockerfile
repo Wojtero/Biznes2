@@ -6,11 +6,11 @@ RUN apt-get install nano
 RUN cd /
 # RUN git clone --single-branch https://github.com/Wojtero/BiznesKursy
 
-ARG DATABASE_HOST=mariadb
+ARG DATABASE_HOST=actina15.maas
 ARG DATABASE_PORT=''
-ARG DATABASE_NAME=prestashop
-ARG DATABASE_USER=root
-ARG DATABASE_PASSWORD=siema
+ARG DATABASE_NAME=be_175718
+ARG DATABASE_USER=be_175718
+ARG DATABASE_PASSWORD=pass
 ARG DATABASE_PREFIX=ps_
 
 RUN rm -R /var/www/html/*
@@ -23,7 +23,7 @@ RUN sed -i "s|'new-mysql'|'${DATABASE_HOST}'|g" ./app/config/parameters.php
 RUN sed -i "s|''|'${DATABASE_PORT}'|g" ./app/config/parameters.php
 RUN sed -i "s|'prestashop'|'${DATABASE_NAME}'|g" ./app/config/parameters.php
 RUN sed -i "s|'database_user' => 'root'|'database_user' => '${DATABASE_USER}'|g" ./app/config/parameters.php
-RUN sed -i "s|'database_password' => 'root'|'database_password' => '${DATABASE_PASSWORD}'|g" ./app/config/parameters.php
+RUN sed -i "s|'database_password' => 'admin'|'database_password' => '${DATABASE_PASSWORD}'|g" ./app/config/parameters.php
 RUN sed -i "s|'ps_'|'${DATABASE_PREFIX}'|g" ./app/config/parameters.php
 
 RUN mkdir /ssl
