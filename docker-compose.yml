@@ -22,6 +22,5 @@ services:
         restart: always
 networks:
     admin-mysql_default:
-        external:
-            name: admin-mysql_default
+        name: admin-mysql_default
         
