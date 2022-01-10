@@ -12,11 +12,11 @@ ARG DATABASE_USER=be_175718
 ARG DATABASE_PASSWORD=pass
 ARG DATABASE_PREFIX=ps_
 
-RUN rm -R /var/www/html/*
-COPY presta_src /var/www/html
-
 RUN chmod -R 777 /var/www/html
-# RUN chown -R www-data:www-data /var/www/html
+RUN chown -R www-data:www-data /var/www/html
+
+RUN rm -Rf /var/www/html/*
+COPY presta_src /var/www/html
 
 RUN sed -i "s|'new-mysql'|'${DATABASE_HOST}'|g" ./app/config/parameters.php
 RUN sed -i "s|''|'${DATABASE_PORT}'|g" ./app/config/parameters.php
@@ -36,8 +36,6 @@ COPY ssl/rootCA.crt /etc/apache2/certs/rootCA.crt
 
 EXPOSE 80
 EXPOSE 443
-
-RUN rm -rf install
 
 RUN a2enmod ssl
 RUN service apache2 restart

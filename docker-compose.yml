@@ -4,10 +4,10 @@ services:
     Skoczkowie:
         image: michalmaciszka/be_175718
         ports:
-            - 5718:80
-            - 5717:443
+            # - 5718:80
+            - 5718:443
         environment:
-            - PS_INSTALL_AUTO=0
+            - PS_INSTALL_AUTO=1
             - PS_DEV_MODE=1
             - DB_SERVER=actina15.maas
             - DB_USER=be_175718
@@ -16,13 +16,6 @@ services:
             - PS_FOLDER_ADMIN=admin
             - PS_FOLDER_INSTALL=install
             - PS_ERASE_DB=0
-            - PS_DOMAIN=localhost:5718
-            - PS_DOMAIN_SSL=localhost:5717
-        # networks:
-        #     - admin-mysql_default
+            - PS_DOMAIN=localhost:5717
+            - PS_DOMAIN_SSL=localhost:5718
         restart: always
-# networks:
-#     admin-mysql_default:
-#         external:
-#             name: admin-mysql_default
-        
